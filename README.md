@@ -44,7 +44,7 @@ First, follow these steps to load the database:
  *   define the Cloudwatch Event with your lambda as a target.  The event should include a schedule of whatever frequency you prefer.
  *   create an Environment Variable with the Group key to filter resources.   The variable name must be GROUP_KEY.   The value can be whatever you like (see image below)
 
-![Environment Variable](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
 
+![Environment Variable](https://github.com/rjgleave/aws-tag-groups/blob/master/group-key-environment-variable.png)
 Blog: The New Resource Groups Tagging API Makes It Easier to Programmatically Manage Tags on Resources Across AWS Services:
 https://aws.amazon.com/about-aws/whats-new/2017/03/the-new-resource-groups-tagging-api-makes-it-easier-to-programmatically-manage-tags-on-resources-across-aws-services/

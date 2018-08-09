@@ -10,17 +10,17 @@ What's Here
 
 This repo includes:
 
-* README.md - this file
-* FOLDER: dynamo - this contains code to help build the tag group table in dynamoDB.  It includes:
- *   createTagGroupTable.py - a program to create the base dynamo table
- *   DataEntryTemplate.xlsx - an Excel template with sample data for the dynamo table
- *   sample-data.csv - a CSV extract of the excel file above
- *   sample-data.json - a JSON equivalent to the CSV file above
- *   loadTagGroupTable.py - a program to load the dynamodb table with sample data
-* FOLDER: tag-builder-direct  - It includes:
- *   tagbuilder.py - the main lambda program to update resources with tags.  
-* FOLDER: tag-builder-lambda - It includes:
- *   tagbuilder-paginate.py - same as lambda program above, except can be called from command line.
+1. README.md - this file
+2. FOLDER: dynamo - this contains code to help build the tag group table in dynamoDB.  It includes:
+    *   createTagGroupTable.py - a program to create the base dynamo table
+    *   DataEntryTemplate.xlsx - an Excel template with sample data for the dynamo table
+    *   sample-data.csv - a CSV extract of the excel file above
+    *   sample-data.json - a JSON equivalent to the CSV file above
+    *   loadTagGroupTable.py - a program to load the dynamodb table with sample data
+3. FOLDER: tag-builder-direct  - It includes:
+    *   tagbuilder.py - the main lambda program to update resources with tags.  
+4. FOLDER: tag-builder-lambda - It includes:
+    *   tagbuilder-paginate.py - same as lambda program above, except can be called from command line.
 
 Step by Step Instructions
 -------------------------
@@ -48,5 +48,6 @@ First, follow these steps to load the database:
 ![Environment Variable](https://github.com/rjgleave/aws-tag-groups/blob/master/group-key-environment-variable.png)
 
 __Additional Resources__
+
 Blog: The New Resource Groups Tagging API Makes It Easier to Programmatically Manage Tags on Resources Across AWS Services:
 https://aws.amazon.com/about-aws/whats-new/2017/03/the-new-resource-groups-tagging-api-makes-it-easier-to-programmatically-manage-tags-on-resources-across-aws-services/

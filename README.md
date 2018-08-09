@@ -46,5 +46,7 @@ First, follow these steps to load the database:
 
 
 ![Environment Variable](https://github.com/rjgleave/aws-tag-groups/blob/master/group-key-environment-variable.png)
+
+__Additional Resources__
 Blog: The New Resource Groups Tagging API Makes It Easier to Programmatically Manage Tags on Resources Across AWS Services:
 https://aws.amazon.com/about-aws/whats-new/2017/03/the-new-resource-groups-tagging-api-makes-it-easier-to-programmatically-manage-tags-on-resources-across-aws-services/

@@ -1,0 +1,19 @@
+{   
+    "Version" : "2012-10-17",   
+    "Statement" : [{      
+       "Effect" : "Allow",      
+       "Action" : [
+          "tag:GetTagKeys",
+          "tag:GetTagValues",
+          "tag:GetResources", 
+          "tag:*",
+          "tag:AddResourceTags",
+          "tag:RemoveResourceTags",
+          "tag:TagResources",
+          "tag:UntagResources",
+          "ec2:CreateTags",
+          "dynamodb:TagResource"
+      ],
+       "Resource" : "*"      
+    }] 
+}

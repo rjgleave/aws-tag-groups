@@ -1,0 +1,7 @@
+﻿GroupKey,SortKey,GroupValue,TagKey,TagValue
+TagGroup,TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121,cost-aexeo,BudgetCode,PROJECT-1212121
+TagGroup,TagGroup/cost-aexeo/EBSCostCenter/4000009,cost-aexeo,EBSCostCenter,4000009
+TagGroup,TagGroup/cost-wan/BudgetCode/PROJECT-232222,cost-wan,BudgetCode,PROJECT-232222
+TagGroup,TagGroup/cost-wan/EBSCostCenter/4000002,cost-wan,EBSCostCenter,4000002
+TagGroup,TagGroup/sec-identity/SecurityComponent/Identity,sec-identity,SecurityComponent,Identity
+TagGroup,TagGroup/sec-threat/SecurityComponent/Threat,sec-threat,SecurityComponent,Threat

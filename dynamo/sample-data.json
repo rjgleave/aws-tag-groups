@@ -1,0 +1,44 @@
+[
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121",
+    "GroupValue": "cost-aexeo",
+    "TagKey": "BudgetCode",
+    "TagValue": "PROJECT-1212121"
+  },
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/cost-aexeo/EBSCostCenter/4000009",
+    "GroupValue": "cost-aexeo",
+    "TagKey": "EBSCostCenter",
+    "TagValue": 4000009
+  },
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/cost-wan/BudgetCode/PROJECT-232222",
+    "GroupValue": "cost-wan",
+    "TagKey": "BudgetCode",
+    "TagValue": "PROJECT-232222"
+  },
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/cost-wan/EBSCostCenter/4000002",
+    "GroupValue": "cost-wan",
+    "TagKey": "EBSCostCenter",
+    "TagValue": 4000002
+  },
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/sec-identity/SecurityComponent/Identity",
+    "GroupValue": "sec-identity",
+    "TagKey": "SecurityComponent",
+    "TagValue": "Identity"
+  },
+  {
+    "GroupKey": "TagGroup",
+    "SortKey": "TagGroup/sec-threat/SecurityComponent/Threat",
+    "GroupValue": "sec-threat",
+    "TagKey": "SecurityComponent",
+    "TagValue": "Threat"
+  }
+]

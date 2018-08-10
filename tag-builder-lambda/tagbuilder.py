@@ -21,30 +21,6 @@ def read_table(tag_group_key):
     response = table.query(
         KeyConditionExpression=Key('groupKey').eq(tag_group_key) 
     )
-
-    '''
-    # buld a dictionary of keys, values and tags to apply
-
-    # like this:  {'cost-group':'aexeo', 'tags': [{'BudgetCode':'PROJECT-1212121','EBSCostCenter':'4000009'}], 
-    #              'cost-group':'wan', 'tags': [{'BudgetCode':'PROJECT-4567899','EBSCostCenter':'4000002'}]}
-
-    # like this:  {'cost-group':'aexeo', 'tags': [{'BudgetCode':'PROJECT-1212121','EBSCostCenter':'4000009'}],
-    tag_list = {}
-    last_gv = ""
-    for i in ddb_response['Items']:
-        # create class objects
-        if i['GroupValue'] != last_gv:
-            last_gv = i['GroupValue'] 
-            tlist = []        
-        else:
-            print "Invalid RecordType in Schedule table >>: ", i['RecordType']
-            continue
-        tdict={}
-        tdict[i['tagKey']]=i['tagValue']
-        tlist.append(tdict)
-
-    return tag_list
-'''
     return response
 
 # find and tag resources
@@ -65,6 +41,7 @@ def mass_update(group_key, group_value, tag_list):
             ResourcesPerPage=page_size
         )
 
+        # PAGINATION: this is important as the number of resources grows
         # save the page token (if there is more to read)
         page_token = response["PaginationToken"]
 
@@ -79,6 +56,7 @@ def mass_update(group_key, group_value, tag_list):
 
         return arn_list, page_token
 
+    # add the list of tags to all resources
     def update_resources(arn_list, tag_list):
         print "Tagging resources..."
         try:
@@ -86,15 +64,16 @@ def mass_update(group_key, group_value, tag_list):
                 ResourceARNList = arn_list,
                 Tags = tag_list
             )
+        print('Tagging resources {} with tags {}'.format(arn_list, tag_list))
         except Exception as e:
             print(e)
             print('Error tagging resources {} with tags {}'.format(arn_list, tag_list))
         #raise e
-        print 'Tag Response >>>>', response
+        #print 'Tag Response >>>>', response
 
         return response
 
-    # search for resources 
+    # search for resources needing tags
     arn_list, page_token = find_resources("")
     
     while True:
@@ -116,9 +95,11 @@ def lambda_handler(event, context):
     # read the tagGroup table
     ddb_response = read_table(group_key)
  
-    # read all job steps for the schedule
+    # read all job steps for the schedule.  To minimize API calls, collect all tags 
+    # which need to be applied before calling the API 
     last_gv = ""
     last_list={}
+    print "Reading Table..." 
     for i in ddb_response['Items']:
         print i['groupKey'], i['groupValue'], i['tagKey'], i['tagValue']
         # create class objects
@@ -140,18 +121,4 @@ def lambda_handler(event, context):
         mass_update(group_key, last_gv, last_list) 
 
 
-    return
-
-
-
-'''
-    try:
-
-    except Exception as e:
-        print(e)
-        print('Error getting object {} from bucket {}. Make sure they exist '
-              'and your bucket is in the same region as this '
-              'function.'.format(key, bucket))
-        raise e
-
-'''
+    return "Tag update complete"

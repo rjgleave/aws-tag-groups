@@ -26,7 +26,6 @@ This repo includes:
 Setup Instructions
 ------------------
 
-First, follow these steps to load the database:
 1. Enter your sample data into the spreadsheet: DataEntryTemplate.xlsx
 2. Export your data from the spreadsheet into a CSV file named: sample-data.csv
 3. Convert the CSV file to JSON format.  The output file should be named: sample-data.json. You can do this with any online site such as:  http://www.convertcsv.com/csv-to-json.htm

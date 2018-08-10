@@ -27,6 +27,7 @@ Setup Instructions
 ------------------
 
 1. Enter your sample data into the spreadsheet: DataEntryTemplate.xlsx
+![Data Entry Template](https://github.com/rjgleave/aws-tag-groups/blob/master/data-entry-template.png)
 2. Export your data from the spreadsheet into a CSV file named: sample-data.csv
 3. Convert the CSV file to JSON format.  The output file should be named: sample-data.json. You can do this with any online site such as:  http://www.convertcsv.com/csv-to-json.htm
 4. Run the program to create the dynamodb table: createTagGroupTable.py

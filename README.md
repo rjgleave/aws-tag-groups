@@ -26,8 +26,8 @@ This repo includes:
 Setup Instructions
 ------------------
 
-1. Enter your sample data into the spreadsheet: DataEntryTemplate.xlsx
-![Data Entry Template](https://github.com/rjgleave/aws-tag-groups/blob/master/data-entry-template.png)
+1. Enter sample data into the spreadsheet: DataEntryTemplate.xlsx (note: column B below auto-computes)
+![Data Entry Template](https://github.com/rjgleave/aws-tag-groups/blob/master/tag-group-data-entry-template.png)
 2. Export your data from the spreadsheet into a CSV file named: sample-data.csv
 3. Convert the CSV file to JSON format.  The output file should be named: sample-data.json. You can do this with any online site such as:  http://www.convertcsv.com/csv-to-json.htm
 4. Run the program to create the dynamodb table: createTagGroupTable.py
@@ -46,10 +46,12 @@ Setup Instructions
     * Use the lambda role defined above
     * Create a trigger using Cloudwatch Events
     * Define the Cloudwatch Event with your lambda as a target.  The event should include a schedule of whatever frequency you prefer.
-    * Create an Environment Variable with the Group key to filter resources.   The variable name must be GROUP_KEY.   The value can be whatever you like (see image below)
+    * Create Environment Variables in the AWS console for the lambda. (see image below)
+    *   set the Group key to filter resources.   The variable name must be GROUP_KEY.   The value can be whatever you like.
+    *   set the switch to run on tag filtering.  The variable name must be TAG_FILTER.  The value must be True or False.   If the filter is ON (true) then it will only update resources which have missing or incorrect tags. If the filter is OFF (false), then this process will update ALL resources
+    *   set the region.  The variable name must be AWS_REGION.  The value must be a valid region name. 
 
-
-![Environment Variable](https://github.com/rjgleave/aws-tag-groups/blob/master/group-key-environment-variable.png)
+![Environment Variable](https://github.com/rjgleave/aws-tag-groups/blob/master/group-key-environment-variables.png)
 
 __Additional Resources__
 

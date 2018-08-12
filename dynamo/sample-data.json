@@ -1,44 +1,62 @@
 [
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121",
-    "GroupValue": "cost-aexeo",
-    "TagKey": "BudgetCode",
-    "TagValue": "PROJECT-1212121"
-  },
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/cost-aexeo/EBSCostCenter/4000009",
-    "GroupValue": "cost-aexeo",
-    "TagKey": "EBSCostCenter",
-    "TagValue": 4000009
-  },
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/cost-wan/BudgetCode/PROJECT-232222",
-    "GroupValue": "cost-wan",
-    "TagKey": "BudgetCode",
-    "TagValue": "PROJECT-232222"
-  },
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/cost-wan/EBSCostCenter/4000002",
-    "GroupValue": "cost-wan",
-    "TagKey": "EBSCostCenter",
-    "TagValue": 4000002
-  },
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/sec-identity/SecurityComponent/Identity",
-    "GroupValue": "sec-identity",
-    "TagKey": "SecurityComponent",
-    "TagValue": "Identity"
-  },
-  {
-    "GroupKey": "TagGroup",
-    "SortKey": "TagGroup/sec-threat/SecurityComponent/Threat",
-    "GroupValue": "sec-threat",
-    "TagKey": "SecurityComponent",
-    "TagValue": "Threat"
-  }
+ {
+   "GroupKey": "TagGroup",
+   "SortKey": "TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121",
+   "GroupValue": "cost-aexeo",
+   "TagKey1": "BudgetCode",
+   "TagValue1": "PROJECT-1212121",
+   "TagKey2": "EBSCostCenter",
+   "TagValue2": 4000009,
+   "TagKey3": "",
+   "TagValue3": "",
+   "TagKey4": "",
+   "TagValue4": "",
+   "TagKey5": "",
+   "TagValue5": ""
+ },
+ {
+   "GroupKey": "TagGroup",
+   "SortKey": "TagGroup/cost-wan/BudgetCode/PROJECT-232222",
+   "GroupValue": "cost-wan",
+   "TagKey1": "BudgetCode",
+   "TagValue1": "PROJECT-232222",
+   "TagKey2": "EBSCostCenter",
+   "TagValue2": 4000002,
+   "TagKey3": "",
+   "TagValue3": "",
+   "TagKey4": "",
+   "TagValue4": "",
+   "TagKey5": "",
+   "TagValue5": ""
+ },
+ {
+   "GroupKey": "TagGroup",
+   "SortKey": "TagGroup/sec-identity/BudgetCode/PROJECT-896775",
+   "GroupValue": "sec-identity",
+   "TagKey1": "BudgetCode",
+   "TagValue1": "PROJECT-896775",
+   "TagKey2": "EBSCostCenter",
+   "TagValue2": 4000033,
+   "TagKey3": "",
+   "TagValue3": "",
+   "TagKey4": "",
+   "TagValue4": "",
+   "TagKey5": "",
+   "TagValue5": ""
+ },
+ {
+   "GroupKey": "TagGroup",
+   "SortKey": "TagGroup/sec-threat/BudgetCode/PROJECT-901233",
+   "GroupValue": "sec-threat",
+   "TagKey1": "BudgetCode",
+   "TagValue1": "PROJECT-901233",
+   "TagKey2": "EBSCostCenter",
+   "TagValue2": 4000055,
+   "TagKey3": "",
+   "TagValue3": "",
+   "TagKey4": "",
+   "TagValue4": "",
+   "TagKey5": "",
+   "TagValue5": ""
+ }
 ]

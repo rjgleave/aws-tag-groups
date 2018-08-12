@@ -1,23 +1,10 @@
 import boto3
 import sys
 import argparse
-import os
-
-# NOTE: YOU MUST SET UP THE ENVIRONMENT VARIABLES IN THE LAMBDA!
-# example:   GROUP_KEY = 'TagGroup' (no quotes needed in Lambda console)
-# import Environment Variables for Lambda configuration
-group_key = os.environ['GROUP_KEY']
-filter_on = os.environ['TAG_FILTER']
-aws_region = os.environ['AWS_REGION']    
-
-# show filter status
-# if the filter is ON (true) then it will only update resources which have missing or incorrect tags
-# if the filter is OFF (false), then this process will update ALL resources
-print "Tag Filter ON?: ", filter_on
 
 # set up dynamoDB table 
 from boto3.dynamodb.conditions import Key, Attr
-dynamodb = boto3.resource('dynamodb', region_name=aws_region)
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 table = dynamodb.Table('tagGroup')
 # load tagging API
 client = boto3.client('resourcegroupstaggingapi')
@@ -38,6 +25,7 @@ def create_filter_list(row):
         value_column_name = "tagValue" + str(x)   
         k = row.get(key_column_name, 'not found')
         v = row.get(value_column_name, 'not found')   
+        #print  key_column_name, value_column_name, k, v
         if k != 'none' and k != 'not found':
             f_tag_dict[k]=v
 
@@ -76,6 +64,7 @@ def find_resources(group_key, group_value, filter_list, filter_on):
             
         #print "Tags compliant? ", tags_compliant
         if not tags_compliant:
+                #r_tag_list.update(r_tag_list)
                 r_arn_list.append(r["ResourceARN"])
 
     return r_arn_list
@@ -102,7 +91,13 @@ def tag_update(resource_arn_list, tag_list):
             u_response = update_resources(sub_list, tag_list)
 
 
-def lambda_handler(event, context):
+def main():
+
+    # set global variables
+    group_key = 'TagGroup'
+    filter_on = True
+
+    print "Tag Filter ON?: ", filter_on
     
     # read the tagGroup table
     ddb_response = read_table(group_key)
@@ -115,12 +110,16 @@ def lambda_handler(event, context):
         # create a tag list from the dynamo record
         f_tag_dict = create_filter_list(i)
 
+        print "Filter list", f_tag_dict
+
         # find all resources with the group key and value
         resource_arn_list = find_resources(i['groupKey'],i['groupValue'], f_tag_dict, filter_on)
 
         # run mass update 
         if resource_arn_list:
-            tag_update(resource_arn_list, f_tag_dict) 
+            #print "ARN list", resource_arn_list
+            #print "Tag list", resource_tag_list[0]
+            tag_update(resource_arn_list, f_tag_dict)     
 
-
-    return "Tag update complete"
+if __name__ == '__main__':
+    main()

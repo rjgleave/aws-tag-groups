@@ -1,7 +1,5 @@
-﻿GroupKey,SortKey,GroupValue,TagKey,TagValue
-TagGroup,TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121,cost-aexeo,BudgetCode,PROJECT-1212121
-TagGroup,TagGroup/cost-aexeo/EBSCostCenter/4000009,cost-aexeo,EBSCostCenter,4000009
-TagGroup,TagGroup/cost-wan/BudgetCode/PROJECT-232222,cost-wan,BudgetCode,PROJECT-232222
-TagGroup,TagGroup/cost-wan/EBSCostCenter/4000002,cost-wan,EBSCostCenter,4000002
-TagGroup,TagGroup/sec-identity/SecurityComponent/Identity,sec-identity,SecurityComponent,Identity
-TagGroup,TagGroup/sec-threat/SecurityComponent/Threat,sec-threat,SecurityComponent,Threat
+﻿GroupKey,SortKey,GroupValue,TagKey1,TagValue1,TagKey2,TagValue2,TagKey3,TagValue3,TagKey4,TagValue4,TagKey5,TagValue5
+TagGroup,TagGroup/cost-aexeo/BudgetCode/PROJECT-1212121,cost-aexeo,BudgetCode,PROJECT-1212121,EBSCostCenter,4000009,,,,,,
+TagGroup,TagGroup/cost-wan/BudgetCode/PROJECT-232222,cost-wan,BudgetCode,PROJECT-232222,EBSCostCenter,4000002,,,,,,
+TagGroup,TagGroup/sec-identity/BudgetCode/PROJECT-896775,sec-identity,BudgetCode,PROJECT-896775,EBSCostCenter,4000033,,,,,,
+TagGroup,TagGroup/sec-threat/BudgetCode/PROJECT-901233,sec-threat,BudgetCode,PROJECT-901233,EBSCostCenter,4000055,,,,,,

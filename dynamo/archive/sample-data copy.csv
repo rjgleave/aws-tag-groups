@@ -1,7 +1,0 @@
-﻿TagGroup,SortKey,GroupKey,GroupValue,TagKey,TagValue
-Finance,cost-group/aexeo/BudgetCode/PROJECT-1212121,cost-group,aexeo,BudgetCode,PROJECT-1212121
-Finance,cost-group/aexeo/EBSCostCenter/4000009,cost-group,aexeo,EBSCostCenter,4000009
-Finance,cost-group/wan/BudgetCode/PROJECT-232222,cost-group,wan,BudgetCode,PROJECT-232222
-Finance,cost-group/wan/EBSCostCenter/4000002,cost-group,wan,EBSCostCenter,4000002
-Security,sec-group/identity/SecurityComponent/Identity,sec-group,identity,SecurityComponent,Identity
-Security,sec-group/Threat/SecurityComponent/Threat,sec-group,Threat,SecurityComponent,Threat

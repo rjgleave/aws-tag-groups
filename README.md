@@ -3,7 +3,7 @@ Tag Group Application
 
 This solution will allow you to define tag groups, which can be used to automatically apply multiple tags to resources which are identified with a specific tag key.  The lambda uses the AWS Resource Group tagging API to efficiently search for resources and apply groups of tags to them.  This service provides powerful filtering capability and will automatically be updated by AWS as new services are added to the platform.   It also provides a powerful API for applying groups of tags to groups of resources with a single operation.
 
-This design includes support for pagination, to support scaling to very large numbers of resources.  It will also make it relatively painless to decouple the updates using SQS, etc. if that is desired in the future.
+This design includes support for pagination, to support scaling to very large numbers of resources.  There are also two options for performing the update:  1) to decouple the tag update operation from the query, using SQS, or 2) perform an immediate update along with the query.  Option 1 is preferred, in order to limit API throttling.   The architecture is shown below.   
 
 ![Tag Group Architecture](https://github.com/rjgleave/aws-tag-groups/blob/master/assets/tag-groups-architecture.png)
 

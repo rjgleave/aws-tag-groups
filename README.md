@@ -5,7 +5,7 @@ This solution will allow you to define tag groups, which can be used to automati
 
 This design includes support for pagination, to support scaling to very large numbers of resources.  It will also make it relatively painless to decouple the updates using SQS, etc. if that is desired in the future.
 
-![Tag Group Architecture](https://github.com/rjgleave/aws-tag-groups/blob/master/assets/CITCO-tag-groups-architecture.png)
+![Tag Group Architecture](https://github.com/rjgleave/aws-tag-groups/blob/master/assets/tag-groups-architecture.png)
 
 What's Here
 -----------

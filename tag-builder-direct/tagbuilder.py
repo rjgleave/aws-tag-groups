@@ -2,6 +2,17 @@ import boto3
 import sys
 import argparse
 
+# set up the SQS queue
+import json
+sqs = boto3.resource('sqs')
+queue = sqs.get_queue_by_name(QueueName='resourceAPIQueue')
+
+# set global variables
+group_key = 'TagGroup'
+filter_on = True
+# if this is True, then the tag updates will be queued to SQS
+sqs_enabled = True
+
 # set up dynamoDB table 
 from boto3.dynamodb.conditions import Key, Attr
 dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
@@ -73,12 +84,22 @@ def find_resources(group_key, group_value, filter_list, filter_on):
 # find and tag resources
 def tag_update(resource_arn_list, tag_list):
 
-    # update the tags on the non-compliant resources
+    # option a: call the API directly to update the tags on the non-compliant resources
     def update_resources(arn_list, tag_list):
         print 'updating: ', arn_list
         response = client.tag_resources(
             ResourceARNList = arn_list,
             Tags = tag_list
+        )
+        return response
+
+    # option b: send a message via SQS to call the api at a throttled rate
+    def send_update_message(arn_list, tag_list):
+        print 'sending to SQS: ', arn_list
+        message_payload={"arn_list" : arn_list, "tag_list" : tag_list}
+        #print "payload: ", json.dumps(message_payload)
+        response = queue.send_message(
+            MessageBody=json.dumps(message_payload)
         )
         return response
     
@@ -88,16 +109,17 @@ def tag_update(resource_arn_list, tag_list):
         for x in range(0,len(resource_arn_list), 20):
             sub_list = resource_arn_list[x: x+20]
             # update the resources with the list of required tags
-            u_response = update_resources(sub_list, tag_list)
+            if sqs_enabled:
+                m_response = send_update_message(sub_list, tag_list)
+            else:
+                u_response = update_resources(sub_list, tag_list)
+
 
 
 def main():
 
-    # set global variables
-    group_key = 'TagGroup'
-    filter_on = True
-
     print "Tag Filter ON?: ", filter_on
+    print "SQS Enabled?: ", sqs_enabled
     
     # read the tagGroup table
     ddb_response = read_table(group_key)
@@ -110,7 +132,7 @@ def main():
         # create a tag list from the dynamo record
         f_tag_dict = create_filter_list(i)
 
-        print "Filter list", f_tag_dict
+        #print "Filter list", f_tag_dict
 
         # find all resources with the group key and value
         resource_arn_list = find_resources(i['groupKey'],i['groupValue'], f_tag_dict, filter_on)

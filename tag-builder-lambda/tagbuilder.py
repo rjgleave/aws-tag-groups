@@ -3,11 +3,20 @@ import sys
 import argparse
 import os
 
+# set up the SQS queue
+import json
+sqs = boto3.resource('sqs')
+queue = sqs.get_queue_by_name(QueueName='resourceAPIQueue')
+
 # NOTE: YOU MUST SET UP THE ENVIRONMENT VARIABLES IN THE LAMBDA!
 # example:   GROUP_KEY = 'TagGroup' (no quotes needed in Lambda console)
 # import Environment Variables for Lambda configuration
+# the group key is the main tag key, which determines which control records are read from dynamodb
 group_key = os.environ['GROUP_KEY']
+# if this is True, then resoures which are already tagged will be filtered out and ignored
 filter_on = os.environ['TAG_FILTER']
+# if this is True, then the tag updates will be queued to SQS
+sqs_enabled = os.environ['SQS_ENABLED']    
 aws_region = os.environ['AWS_REGION']    
 
 # show filter status
@@ -93,16 +102,32 @@ def tag_update(resource_arn_list, tag_list):
         )
         return response
     
+    # option b: send a message via SQS to call the api at a throttled rate
+    def send_update_message(arn_list, tag_list):
+        print 'sending to SQS: ', arn_list
+        message_payload={"arn_list" : arn_list, "tag_list" : tag_list}
+        #print "payload: ", json.dumps(message_payload)
+        response = queue.send_message(
+            MessageBody=json.dumps(message_payload)
+        )
+        return response
+
     # apply tags to all resources in the list
     for r in resource_arn_list:
         # you can only update 20 resources at a time
         for x in range(0,len(resource_arn_list), 20):
             sub_list = resource_arn_list[x: x+20]
             # update the resources with the list of required tags
-            u_response = update_resources(sub_list, tag_list)
+            if sqs_enabled:
+                m_response = send_update_message(sub_list, tag_list)
+            else:
+                u_response = update_resources(sub_list, tag_list)
 
 
 def lambda_handler(event, context):
+
+    print "Tag Filter ON?: ", filter_on
+    print "SQS Enabled?: ", sqs_enabled
     
     # read the tagGroup table
     ddb_response = read_table(group_key)

@@ -75,8 +75,8 @@ def find_resources(group_key, group_value, filter_list, filter_on):
             
         #print "Tags compliant? ", tags_compliant
         if not tags_compliant:
-                #r_tag_list.update(r_tag_list)
-                r_arn_list.append(r["ResourceARN"])
+            #r_tag_list.update(r_tag_list)
+            r_arn_list.append(r["ResourceARN"])
 
     return r_arn_list
 

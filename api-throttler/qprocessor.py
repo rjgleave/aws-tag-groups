@@ -31,10 +31,16 @@ client = boto3.client('resourcegroupstaggingapi')
 # update the tags on the non-compliant resources
 def update_resources(arn_list, tag_list):
     print 'updating: ', arn_list, tag_list
-    response = client.tag_resources(
-        ResourceARNList = arn_list,
-        Tags = tag_list
-    )
+    try:
+        response = client.tag_resources(
+            ResourceARNList = arn_list,
+            Tags = tag_list
+        )
+        print "Success!"
+    except ClientError as e: #if you see a ClientError, catch it as e
+        print "Failed!!!"
+        print(e) #print the client error info to console
+
     print response
 
     return response
@@ -45,6 +51,7 @@ def lambda_handler(event, context):
         body = record['body']
         print(record['body'])
 
+    print body
     b = {}
     b = ast.literal_eval(body)
     # parse body into components

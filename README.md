@@ -1,4 +1,4 @@
-Tag Group Application
+Tag Group System Using AWS SQS
 ==================================================
 
 This solution will allow you to define tag groups, which can be used to automatically apply multiple tags to resources which are identified with a specific tag key.  The lambda uses the AWS Resource Group tagging API to efficiently search for resources and apply groups of tags to them.  This service provides powerful filtering capability and will automatically be updated by AWS as new services are added to the platform.   It also provides a powerful API for applying groups of tags to groups of resources with a single operation.

@@ -6,7 +6,7 @@ Message Body - up to 20 resources in the arn_list
 =========================================================================
 {
     "arn_list": [
-        "arn:aws:ec2:us-east-2:786247309603:instance/i-008209845c755399b"
+        "arn:aws:ec2:us-east-2:123456789012:instance/i-008209845c755399b"
     ],
     "tag_list": {
         "BudgetCode": "PROJECT-1212121",
